@@ -1,92 +1,234 @@
-# CineScope — Movie Rating Analysis
+# 🎬 CineScope — Movie Rating Analysis & Discovery
 
-An educational Big Data Analytics project that explores movie ratings using **Apache Spark (PySpark)** and presents insights in an interactive **Streamlit** dashboard.
+<p align="center">
+  **Big Data Analytics Project | Apache Spark | PySpark | Streamlit**
+</p>
 
-## Features
-- Overall dataset KPIs: ratings, users, movies and average score
-- Rating distribution
-- Genre-level rating volume and average rating
-- Most-rated movies
-- Highest-rated movies with a minimum-rating threshold to reduce small-sample bias
-- Most active users
-- Release-year rating trends
-- Simple rating-based movie suggestions (not personalized)
+CineScope is an interactive movie rating analytics dashboard built using **Apache Spark (PySpark)** and **Streamlit**. It analyzes the MovieLens dataset to discover movie popularity, genre trends, rating distributions, user activity and year-wise rating patterns.
 
-## Technology
-- Python
-- Apache Spark / PySpark for distributed-style data processing
-- Streamlit for the web interface
-- Plotly for interactive visualizations
-- MovieLens latest-small dataset from GroupLens Research
+The project demonstrates how distributed data processing concepts can be applied to real-world movie rating data.
 
-## Requirements
-- Python 3.9–3.12 recommended
-- Java 8, 11 or 17 (Java 17 recommended for current PySpark releases)
-- Git (for version control)
+---
 
-## Run on Windows
-1. Install Python and Java. Ensure `python`, `java` and `git` work in a terminal.
-2. Open this folder in VS Code.
-3. Open Terminal → New Terminal.
-4. Create and activate a virtual environment:
+## 📸 Dashboard Preview
+
+### 1. Dashboard Overview
+![Dashboard Overview](screenshots/01-overview.png)
+
+### 2. Genre Insights
+![Genre Insights](screenshots/02-genre-insights.png)
+
+### 3. Movie Rankings
+![Movie Rankings](screenshots/03-movie-rankings.png)
+
+### 4. User Activity
+![User Activity](screenshots/04-user-activity.png)
+
+### 5. Year-wise Analysis
+![Year-wise Analysis](screenshots/05-year-analysis.png)
+
+### 6. Source Code
+![Source Code](screenshots/06-project-code.png)
+
+### 7. Project Structure
+![Project Structure](screenshots/07-project-structure.png)
+
+### 8. Application Running
+![Terminal Output](screenshots/08-terminal-output.png)
+
+### 9. Dataset
+![Dataset Files](screenshots/09-dataset-files.png)
+
+---
+
+## 🚀 Features
+
+- **Movie Statistics:** Analyze total movies, ratings and average rating.
+- **Genre Analysis:** Compare movie genres based on rating counts and average ratings.
+- **Movie Rankings:** Identify popular and highly rated movies.
+- **User Activity:** Explore user rating patterns and activity levels.
+- **Rating Distribution:** Understand how users rate movies.
+- **Year-wise Analysis:** Explore rating trends across movie release years.
+- **Interactive Dashboard:** Explore results through Streamlit and Plotly visualizations.
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python | Programming language |
+| Apache Spark | Big data processing engine |
+| PySpark | Spark DataFrame operations |
+| Streamlit | Interactive dashboard |
+| Pandas | Data handling and conversion |
+| Plotly | Interactive visualizations |
+| MovieLens | Movie rating dataset |
+
+## 📊 Dataset
+
+This project uses the **MovieLens latest-small dataset** published by GroupLens.
+
+Dataset: [MovieLens Latest Small](https://grouplens.org/datasets/movielens/latest/)
+
+The dataset includes:
+- `movies.csv` — Movie IDs, titles and genres.
+- `ratings.csv` — User ratings and timestamps.
+
+The application reads these CSV files and processes them using PySpark.
+
+## 🏗️ System Architecture
+
+```text
+       MovieLens Dataset
+               |
+               v
+        CSV Data Files
+               |
+               v
+       PySpark DataFrames
+               |
+               v
+       Data Cleaning &
+       Transformation
+               |
+               v
+       Aggregation &
+       Statistical Analysis
+               |
+               v
+       Pandas DataFrames
+               |
+               v
+       Streamlit Dashboard
+               |
+               v
+       Plotly Visualizations
+```
+
+## ⚙️ Installation and Setup
+
+### Prerequisites
+
+- Python installed
+- Java Development Kit (JDK 17 recommended)
+- Git
+- Visual Studio Code (optional)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/Movie-Rating-Analysis.git
+cd Movie-Rating-Analysis
+```
+
+### 2. Create a virtual environment
+
+Windows:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+py -m venv .venv
 ```
 
-If PowerShell blocks activation, use Command Prompt and run:
+### 3. Activate the environment
 
-```cmd
-.venv\Scripts\activate.bat
+```powershell
+.venv\Scripts\activate
 ```
 
-5. Install dependencies:
+### 4. Install dependencies
 
-```bash
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+```powershell
+py -m pip install -r requirements.txt
 ```
 
-6. Launch:
+### 5. Run the application
 
-```bash
-streamlit run app.py
+```powershell
+py -m streamlit run app.py
 ```
 
-The dashboard opens in your browser. On first run, the app downloads the MovieLens latest-small dataset (approximately 1 MB) into `data/`.
+Open the local URL displayed in the terminal, usually:
 
-## Dataset
-MovieLens latest-small includes `movies.csv` and `ratings.csv`. The app downloads it from:
+```text
+http://localhost:8501
+```
+
+### 6. Dataset setup
+
+If the dataset is not already present, download the MovieLens latest-small ZIP file:
+
 https://files.grouplens.org/datasets/movielens/ml-latest-small.zip
 
-If automatic download fails, download the ZIP manually from https://grouplens.org/datasets/movielens/, extract it, and copy `movies.csv` and `ratings.csv` into the `data/` folder.
+Extract it and place `movies.csv` and `ratings.csv` inside the `data/` directory.
 
-## How Spark is used
-The app reads CSV files into Spark DataFrames, removes incomplete rows, filters invalid ratings, and performs distributed aggregations:
-- counts and averages
-- group-by movie and user
-- genre expansion and aggregation
-- joins between ratings and movie metadata
-- release-year trend calculations
+## 📁 Project Structure
 
-The Spark session uses local mode (`local[*]`) so it can run on a student laptop without a Hadoop cluster. This demonstrates Spark DataFrame processing, but it is not a multi-node cluster deployment.
-
-## GitHub upload
-Create an empty public repository on GitHub named `Movie-Rating-Analysis`. Then run these commands from this folder:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit - Movie Rating Analysis dashboard"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/Movie-Rating-Analysis.git
-git push -u origin main
+```text
+Movie-Rating-Analysis/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── run_windows.bat
+│
+├── data/
+│   ├── README.txt
+│   ├── movies.csv
+│   └── ratings.csv
+│
+└── screenshots/
+    ├── 01-overview.png
+    ├── 02-genre-insights.png
+    ├── 03-movie-rankings.png
+    ├── 04-user-activity.png
+    ├── 05-year-analysis.png
+    ├── 06-project-code.png
+    ├── 07-project-structure.png
+    ├── 08-terminal-output.png
+    └── 09-dataset-files.png
 ```
 
-Replace `YOUR-USERNAME` with your GitHub username. Do not commit virtual environments or secrets.
+## 🔍 Big Data Processing Concepts
 
-## Project limitations
-- The recommendation table is a simple popularity/average-rating baseline, not a personalized recommendation model.
-- Spark runs locally on one machine; no cluster is configured.
-- MovieLens ratings are a sample of user-submitted preferences and may not represent all audiences.
+The project demonstrates several data processing operations using PySpark:
+
+- Data ingestion using Spark DataFrames.
+- Data cleaning and filtering.
+- Data transformation using column operations.
+- Grouping and aggregation.
+- Joining movie and rating datasets.
+- Sorting and ranking.
+- Statistical analysis of ratings.
+
+## ⚠️ Project Scope and Limitations
+
+- Uses the MovieLens latest-small benchmark dataset.
+- Spark runs in local mode on the development machine (`local[*]`).
+- This is an educational Big Data analytics project, not a multi-node production cluster.
+- Movie rankings are based on available user ratings and minimum rating-count thresholds.
+- The project demonstrates rating-based analysis, not personalized machine-learning recommendations.
+
+## 🔮 Future Enhancements
+
+- Integrate a larger MovieLens dataset.
+- Deploy Spark on a multi-node cluster.
+- Implement collaborative filtering using Spark MLlib.
+- Develop personalized movie recommendations.
+- Add additional interactive filters and visualizations.
+- Deploy the dashboard online.
+
+## 🎓 Project Information
+
+**Project Title:** Movie Rating Analysis & Discovery
+
+**Project Name:** CineScope
+
+**Domain:** Big Data Analytics
+
+**Processing Engine:** Apache Spark (PySpark)
+
+**Dashboard Framework:** Streamlit
+
+---
+
+*Developed as an academic Big Data Analytics project to explore movie ratings and demonstrate large-scale data processing concepts.*
